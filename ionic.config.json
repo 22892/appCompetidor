@@ -1,0 +1,7 @@
+{
+  "name": "app-competidores",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
