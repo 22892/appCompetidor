@@ -39,7 +39,6 @@ export class RegistroPage implements OnInit {
 
     this.serviceData.getAllListCompetidor().subscribe((data) => {
       this.listCompetidor = data;
-      // console.log(this.listCompetidor)
     });
   }
 
