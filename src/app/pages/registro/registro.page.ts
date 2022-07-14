@@ -112,7 +112,9 @@ export class RegistroPage implements OnInit {
       fecha_salida: new Date,
       fecha_llegada: new Date,
       tiempo: new Date,
-
+      hora:0,
+      minuto:0,
+      segundo:0
     }
     this.serviceData.createCompetidor(competidor)
 

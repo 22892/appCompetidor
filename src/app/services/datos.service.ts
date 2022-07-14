@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class DatosService {
 
-  listConpetidor: any[] = [{codigo: 1, nombre: 'Carlos Alvarez', edad: 20, sexo: 'Masculino'}]
   competidorDoc: any
   user: any
 
@@ -23,26 +22,52 @@ export class DatosService {
   //   return this.listConpetidor
   // }
 
-  getUser (usuario:string, pass:string): Observable<any> {
-    const ref= this.fireStore.collection<Usuario>('administrador',ref =>
-    {
+  getUser(usuario: string, pass: string): Observable<any> {
+    const ref = this.fireStore.collection<Usuario>('administrador', ref => {
       return ref
-              .where('pass', '==', pass)
-              .where('usuario', '==', usuario)
-      }
+        .where('pass', '==', pass)
+        .where('usuario', '==', usuario)
+        
+    }
     ).valueChanges();
     return ref;
   }
 
-  createCompetidor(competidor:Competidor){
-    this.competidorDoc = this.fireStore.doc<any>('competidores/'+competidor.id);
+  createCompetidor(competidor: Competidor) {
+    this.competidorDoc = this.fireStore.doc<any>('competidores/' + competidor.id);
     this.competidorDoc.set(competidor)
   }
 
-  getAllListCompetidor(): Observable<Competidor[]>{
-    // return this.fireStore.collection('competidores').doc<Competidor>(songId).valueChanges();
+  getAllListCompetidor(): Observable<Competidor[]> {
     return this.fireStore.collection<Competidor>('competidores').valueChanges();
+  }
 
+  updateCompetidor(competidor: Competidor) {
+    this.competidorDoc = this.fireStore.doc<any>('competidores/' + competidor.id);
+    this.competidorDoc.update(competidor)
+  }
+
+  deleteCompetidor(competidor: Competidor) {
+    this.fireStore.doc<any>('competidores/' + competidor.id).delete();
+  }
+
+  getCompetidoresAsistio(): Observable<any> {
+    const ref = this.fireStore.collection<Competidor>('competidores', ref => {
+      return ref.where('asistio', '==', true)
+    }
+    ).valueChanges();
+    return ref;
+  }
+
+  getCompetidoresResultado(): Observable<any> {
+    const ref = this.fireStore.collection<Competidor>('competidores', ref => {
+      return ref.where('asistio', '==', true)
+      .orderBy('hora', "asc")
+      .orderBy('minuto', "asc")
+      .orderBy('segundo', "asc")
+    }
+    ).valueChanges();
+    return ref;
   }
 
 
