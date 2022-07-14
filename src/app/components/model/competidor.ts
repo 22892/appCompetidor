@@ -7,5 +7,7 @@ export interface Competidor {
     fecha_salida:Date;
     fecha_llegada:Date;
     tiempo:Date;
-
+    hora:number;
+    minuto:number;
+    segundo:number;
   }
