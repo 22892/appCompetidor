@@ -6,6 +6,8 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { AlertController } from '@ionic/angular';
 import { Competidor } from 'src/app/components/model/competidor';
 import { Observable } from 'rxjs';
+import { ToastController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 
@@ -24,7 +26,10 @@ export class RegistroPage implements OnInit {
 
   constructor(private fb: FormBuilder,
     private serviceData: DatosService,
-    private alertController: AlertController) {
+    private alertController: AlertController,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
+    private router: Router,) {
 
     this.registroForm = this.fb.group({
 
@@ -36,9 +41,38 @@ export class RegistroPage implements OnInit {
   }
 
   ngOnInit() {
+    
+  }
+
+  ionViewWillEnter(){
+
+    console.log('hhhhhhhhh');
+    console.log(this.serviceData.getCredentials());
+    
+
+    if(this.serviceData.getCredentials()){
+
+      this.getListCompetidor()
+    }else{
+
+      this.router.navigate(['/login']);
+    }
+    
+  }
+
+
+
+  async getListCompetidor(){
+    const loading = await this.loadingCtrl.create({
+      message: 'Recuperando....',
+    });
+    loading.present();
 
     this.serviceData.getAllListCompetidor().subscribe((data) => {
+      loading.dismiss();
       this.listCompetidor = data;
+      console.log(this.listCompetidor);
+      
     });
   }
 
@@ -69,13 +103,6 @@ export class RegistroPage implements OnInit {
   confirm() {
     this.modal.dismiss('Texto', 'confirm');
 
-
-    let persona = {
-      nombre: this.registroForm.get('nombre')!.value,
-      edad: this.registroForm.get('edad')!.value,
-      sexo: this.registroForm.get('sexo')!.value
-    }
-
     let competidor: Competidor = {
       nombre: this.registroForm.get('nombre')!.value,
       edad: this.registroForm.get('edad')!.value,
@@ -91,10 +118,16 @@ export class RegistroPage implements OnInit {
 
   }
 
-  onWillDismiss(event: Event) {
+  async onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      console.log('agregado');
+      let toast = await this.toastCtrl.create({
+        message: 'Competidor Agregado!!!',
+        duration: 2000,
+        position: 'top'
+      });
+
+      return await toast.present()
 
 
     }
@@ -130,6 +163,10 @@ export class RegistroPage implements OnInit {
     await alert.present();
   }
 
+  cerrarSesion(){
+    this.serviceData.logout()
+
+  }
 
 
 }

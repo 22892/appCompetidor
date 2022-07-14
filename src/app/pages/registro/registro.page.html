@@ -6,12 +6,23 @@
       </ion-button>
     </ion-buttons>
     <ion-title style="text-align: center;">Registra Competidores</ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="primary" id="click-trigger">
       <ion-button>  
         <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
+  <ion-popover trigger="click-trigger" triggerAction="click">
+    <ng-template>
+      <ion-chip (click)="cerrarSesion()"> 
+        <ion-icon name="cloud-download-outline"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-chip>
+    </ng-template>
+  </ion-popover>
+
+
 </ion-header>
 
 <ion-content>
