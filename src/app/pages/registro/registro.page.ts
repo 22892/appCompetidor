@@ -116,6 +116,8 @@ export class RegistroPage implements OnInit {
       minuto:0,
       segundo:0
     }
+    console.log(competidor);
+    
     this.serviceData.createCompetidor(competidor)
 
   }
