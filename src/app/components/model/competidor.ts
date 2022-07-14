@@ -1,12 +1,11 @@
 export interface Competidor {
-    id:string
-    cedula: string;
+    id: number;
     nombre: string;
     edad: string;
     sexo: string;
-    asistio: string;
-    fecha_salida:string;
-    fecha_llegada:string;
-    tiempo:string;
+    asistio: Boolean;
+    fecha_salida:Date;
+    fecha_llegada:Date;
+    tiempo:Date;
 
   }
