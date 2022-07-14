@@ -3,8 +3,15 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { RouterModule, Routes } from '@angular/router';
 
-import { HomePageRoutingModule } from './home-routing.module';
+const routes: Routes = [
+  {path:'', component: HomePage, children:[ {
+    path: 'registro',
+    loadChildren: () => import('../../pages/registro/registro.module').then(m => m.RegistroPageModule)
+  },]},
+
+];
 
 
 @NgModule({
@@ -12,7 +19,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    RouterModule.forChild(routes),
   ],
   declarations: [HomePage]
 })
