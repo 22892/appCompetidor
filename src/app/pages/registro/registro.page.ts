@@ -33,15 +33,13 @@ export class RegistroPage implements OnInit {
       sexo: [null, [Validators.required]],
 
     });
-
   }
 
   ngOnInit() {
 
     this.serviceData.getAllListCompetidor().subscribe((data) => {
       this.listCompetidor = data;
-      console.log(this.listCompetidor)
-
+      // console.log(this.listCompetidor)
     });
   }
 
