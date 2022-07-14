@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { Competidor } from '../components/model/competidor';
 import { Usuario } from '../components/model/usuario';
 
 @Injectable({
@@ -29,5 +30,8 @@ export class DatosService {
     return ref;
   }
 
+  createCompetidor(competidor:Competidor){
+
+  }
 
 }
