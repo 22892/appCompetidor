@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    
+
+    
+    <ion-row>
+      <ion-col>
+        <ion-button style="margin-left: 20px;" (click)="editarCompetidor()" size="small" color="medium">Actualizar</ion-button>
+
+      </ion-col>
+      <ion-col style="margin-top: 10px;">
+        <ion-label> {{competidor.nombre}}</ion-label>
+
+      </ion-col>
+      
+
+    </ion-row>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-content class="ion-padding">
+    <ion-item>
+     
+      <form [formGroup]="registroForm" (ngSubmit)="submitForm()">
+
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input type="text" formControlName="nombre" placeholder="Nombre"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="stacked">Edad</ion-label>
+          <ion-input type="number" formControlName="edad" placeholder="Edad"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="stacked">Sexo</ion-label>
+          <ion-input type="text" formControlName="sexo" placeholder="Sexo"></ion-input>
+        </ion-item>
+      
+  
+      </form>
+  
+
+    </ion-item>
+  </ion-content>
+  
+
+</ion-content>

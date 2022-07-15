@@ -47,7 +47,7 @@
               </ion-col>
 
               <ion-col size="2">
-                <ion-button size="small" (click)="actualizarCompetidor()" color="primary" >
+                <ion-button size="small" (click)="actualizarCompetidor(competidor)" color="primary" >
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-button>
               </ion-col>
@@ -74,49 +74,48 @@
 
 
 
-  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button (click)="cancel()">Cancelar</ion-button>
-          </ion-buttons>
-          <ion-title style="text-align: center;">Nuevo</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="confirm()" [strong]="true">Agregar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-item>
-         
-          <form [formGroup]="registroForm" (ngSubmit)="submitForm()">
-
-            <ion-item>
-              <ion-label position="stacked">Nombre</ion-label>
-              <ion-input type="text" formControlName="nombre" placeholder="Nombre"></ion-input>
-            </ion-item>
-      
-            <ion-item>
-              <ion-label position="stacked">Edad</ion-label>
-              <ion-input type="text" formControlName="edad" placeholder="Edad"></ion-input>
-            </ion-item>
-      
-            <ion-item>
-              <ion-label position="stacked">Sexo</ion-label>
-              <ion-input type="text" formControlName="sexo" placeholder="Sexo"></ion-input>
-            </ion-item>
-          
-      
-          </form>
-      
-
-        </ion-item>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-
-
 
 
 </ion-content>
+
+<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title style="text-align: center;">Nuevo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm()" [strong]="true">Agregar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+       
+        <form [formGroup]="registroForm" (ngSubmit)="submitForm()">
+
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input type="text" formControlName="nombre" placeholder="Nombre"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">Edad</ion-label>
+            <ion-input type="number" formControlName="edad" placeholder="Edad"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">Sexo</ion-label>
+            <ion-input type="text" formControlName="sexo" placeholder="Sexo"></ion-input>
+          </ion-item>
+        
+    
+        </form>
+    
+
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
