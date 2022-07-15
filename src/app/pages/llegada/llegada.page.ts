@@ -59,10 +59,13 @@ export class LlegadaPage implements OnInit {
     competidor.fecha_llegada = new Date()
     // console.log('salida ' + competidor.fecha_salida.seconds)
 
-    // console.log('salida ' + new Date(competidor.fecha_salida.seconds * 1000))
-    // console.log('llegada ' + new Date(competidor.fecha_llegada))
+    //console.log('salida ' + new Date(competidor.fecha_salida))
+    //console.log('llegada ' + new Date(competidor.fecha_llegada))
 
-    var tiempoPasado = competidor.fecha_llegada.getTime() - (competidor.fecha_salida.seconds * 1000);
+    
+
+    var tiempoPasado = competidor.fecha_llegada.getTime() - (competidor.fecha_salida);
+
 
     var segs = 1000;
     var mins = segs * 60;
@@ -80,6 +83,9 @@ export class LlegadaPage implements OnInit {
     var dias = Math.floor(tiempoPasado / days)
 
     tiempoPasado = tiempoPasado - (dias * days);
+
+    
+
     var horas = Math.floor(tiempoPasado / hours)
 
     tiempoPasado = tiempoPasado - (horas * hours);
@@ -92,6 +98,12 @@ export class LlegadaPage implements OnInit {
     competidor.minuto = minutos
     competidor.segundo = segundos
     competidor.llegada = true
+
+
+    console.log('llegada');
+    console.log(competidor);
+    
+
     this.serviceData.updateCompetidor(competidor)
   }
 

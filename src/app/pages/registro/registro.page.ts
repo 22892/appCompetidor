@@ -23,6 +23,7 @@ export class RegistroPage implements OnInit {
 
   registroForm: FormGroup;
   listCompetidor: Competidor[] = []
+  optionSexo: any[] = [{sex_codigo: 1, sex_descripcion: 'Masculino'}, {sex_codigo: 2, sex_descripcion: 'Femenino'}]
   // public listCompetidor: Observable<Competidor[]>;
 
   constructor(private fb: FormBuilder,
@@ -124,11 +125,13 @@ export class RegistroPage implements OnInit {
   
   
       this.modal.dismiss('Texto', 'confirm');
+      
+      let getSexo = this.registroForm.get('sexo')!.value
   
       let competidor: Competidor = {
         nombre: this.registroForm.get('nombre')!.value,
         edad: this.registroForm.get('edad')!.value,
-        sexo: this.registroForm.get('sexo')!.value,
+        sexo: getSexo.sex_descripcion,
         asistio: false,
         id: idPerson,
         fecha_salida: new Date,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { PremiacionPage } from './premiacion.page';
     IonicModule,
     PremiacionPageRoutingModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [PremiacionPage]
 })
 export class PremiacionPageModule {}

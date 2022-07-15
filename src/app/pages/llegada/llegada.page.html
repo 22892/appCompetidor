@@ -8,11 +8,11 @@
 
   <div style="width: 100%;" *ngIf="listCompetidor.length>0; else NoCompetidor">
     <ion-scroll scrollX="true">
-      <ion-list *ngFor="let competidor of listCompetidor">
 
-        <div *ngIf="competidor.asistio; else NoIniciaCarrera">
-
-          <ion-item>
+      <div *ngFor="let competidor of listCompetidor">
+       
+        <ion-list *ngIf="competidor.asistio">
+          <ion-item >
   
             <ion-grid>
               <ion-row>
@@ -46,16 +46,12 @@
             </ion-grid>
   
           </ion-item>
-  
-
-        </div>
-
-        <ng-template #NoIniciaCarrera>
-          <ion-badge color="primary">NO INICIA LA COMPETICIÓN</ion-badge>
-        </ng-template>
-    
         
       </ion-list>
+
+
+      </div>
+
   
     </ion-scroll>
   

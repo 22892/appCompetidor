@@ -32,7 +32,7 @@
   <ion-content class="ion-padding">
     <ion-item>
      
-      <form [formGroup]="registroForm" (ngSubmit)="submitForm()">
+      <form style="width: 100%;" [formGroup]="registroForm" (ngSubmit)="submitForm()">
 
         <ion-item>
           <ion-label position="stacked">Nombre</ion-label>
@@ -45,9 +45,12 @@
         </ion-item>
   
         <ion-item>
-          <ion-label position="stacked">Sexo</ion-label>
-          <ion-input type="text" formControlName="sexo" placeholder="Sexo"></ion-input>
+          <ion-label>Seleccione Sexo</ion-label>
+          <ion-select formControlName="sexo" class="custom-options"  okText="Agrgar" cancelText="Cancelar">
+            <ion-select-option *ngFor="let sex of optionSexo" [value]="sex" >{{sex.sex_descripcion}}</ion-select-option>
+          </ion-select>
         </ion-item>
+
       
   
       </form>

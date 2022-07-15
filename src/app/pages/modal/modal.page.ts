@@ -14,6 +14,8 @@ export class ModalPage implements OnInit {
   registroForm: FormGroup;
   @Input() competidor: any;
 
+  optionSexo: any[] = [{sex_codigo: 1, sex_descripcion: 'Masculino'}, {sex_codigo: 2, sex_descripcion: 'Femenino'}]
+
 
   constructor(private modalController: ModalController,
     private fb: FormBuilder,
@@ -49,8 +51,18 @@ export class ModalPage implements OnInit {
     const valida = this.validateForms()
 
     if(valida){
-      // console.log('ejecuta editar'+JSON.stringify((this.competidor)));
+      
+
+       this.competidor.nombre = this.registroForm.get('nombre')!.value
+       let sexo = this.registroForm.get('sexo')!.value
+       this.competidor.edad = this.registroForm.get('edad')!.value
+       this.competidor.sexo = sexo.sex_descripcion
+
+       console.log('ejecuta editar');
+       console.log(this.competidor);
+       
       this.serviceData.updateCompetidor(this.competidor);
+      return this.modalController.dismiss();
 
       
     }else{

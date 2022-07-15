@@ -62,6 +62,11 @@ export class InicioPage implements OnInit {
   asistenciaCompetencia(competidor: Competidor){
     competidor.asistio = true
     competidor.fecha_salida = Date.now()
+
+    console.log('salidaaa');
+    
+    console.log(competidor);
+    
     this.serviceData.updateCompetidor(competidor)
 
   }
