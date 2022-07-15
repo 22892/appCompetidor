@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { DatosService } from './../../services/datos.service'
 import { Router } from '@angular/router';
+import { Competidor } from 'src/app/components/model/competidor';
 
 
 @Component({
@@ -58,9 +59,10 @@ export class InicioPage implements OnInit {
   }
 
 
-  asistenciaCompetencia(competidor: any){
-
-    
+  asistenciaCompetencia(competidor: Competidor){
+    competidor.asistio = true
+    competidor.fecha_salida = Date.now()
+    this.serviceData.updateCompetidor(competidor)
 
   }
 

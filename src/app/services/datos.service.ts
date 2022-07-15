@@ -62,6 +62,7 @@ export class DatosService {
   getCompetidoresResultado(): Observable<any> {
     const ref = this.fireStore.collection<Competidor>('competidores', ref => {
       return ref.where('asistio', '==', true)
+      .where('llegada', '==', true)
       .orderBy('hora', "asc")
       .orderBy('minuto', "asc")
       .orderBy('segundo', "asc")

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatosService } from 'src/app/services/datos.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class ModalPage implements OnInit {
 
   constructor(private modalController: ModalController,
     private fb: FormBuilder,
-    private toastCtrl: ToastController,) {
+    private toastCtrl: ToastController,
+    private serviceData: DatosService) {
       this.registroForm = this.fb.group({
 
         nombre: [null, [Validators.required]],
@@ -42,13 +44,13 @@ export class ModalPage implements OnInit {
 
   async editarCompetidor(){
 
-    console.log(this.competidor);
+    // console.log(this.competidor);
 
     const valida = this.validateForms()
 
     if(valida){
-      console.log('ejecuta editar');
-
+      // console.log('ejecuta editar'+JSON.stringify((this.competidor)));
+      this.serviceData.updateCompetidor(this.competidor);
 
       
     }else{

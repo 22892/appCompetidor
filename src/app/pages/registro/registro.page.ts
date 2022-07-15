@@ -133,7 +133,6 @@ export class RegistroPage implements OnInit {
         id: idPerson,
         fecha_salida: new Date,
         fecha_llegada: new Date,
-        tiempo: new Date,
         hora:0,
         minuto:0,
         segundo:0,

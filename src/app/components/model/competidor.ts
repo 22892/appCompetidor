@@ -4,9 +4,8 @@ export interface Competidor {
     edad: string;
     sexo: string;
     asistio: Boolean;
-    fecha_salida:Date;
-    fecha_llegada:Date;
-    tiempo:Date;
+    fecha_salida:any;
+    fecha_llegada:any;
     hora:number;
     minuto:number;
     segundo:number;
