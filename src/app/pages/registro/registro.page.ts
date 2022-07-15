@@ -6,8 +6,9 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { AlertController } from '@ionic/angular';
 import { Competidor } from 'src/app/components/model/competidor';
 import { Observable } from 'rxjs';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ModalPage } from '../../pages/modal/modal.page';
 
 
 
@@ -29,7 +30,8 @@ export class RegistroPage implements OnInit {
     private alertController: AlertController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private router: Router,) {
+    private router: Router,
+    private modalController: ModalController,) {
 
     this.registroForm = this.fb.group({
 
@@ -100,27 +102,67 @@ export class RegistroPage implements OnInit {
   }
 
 
-  confirm() {
-    this.modal.dismiss('Texto', 'confirm');
+  async confirm() {
 
-    let competidor: Competidor = {
-      nombre: this.registroForm.get('nombre')!.value,
-      edad: this.registroForm.get('edad')!.value,
-      sexo: this.registroForm.get('sexo')!.value,
-      asistio: false,
-      id: 1,
-      fecha_salida: new Date,
-      fecha_llegada: new Date,
-      tiempo: new Date,
-      hora:0,
-      minuto:0,
-      segundo:0
+
+    const valida = this.validateForms()
+
+    if(valida){
+
+      var idPerson = this.serviceData.getIdPerson()
+
+
+      if(idPerson == null){
+      
+        this.serviceData.setIdPersona(0)
+        idPerson = 1
+  
+      }else{
+        this.serviceData.setIdPersona(1)
+  
+      }
+  
+  
+      this.modal.dismiss('Texto', 'confirm');
+  
+      let competidor: Competidor = {
+        nombre: this.registroForm.get('nombre')!.value,
+        edad: this.registroForm.get('edad')!.value,
+        sexo: this.registroForm.get('sexo')!.value,
+        asistio: false,
+        id: idPerson,
+        fecha_salida: new Date,
+        fecha_llegada: new Date,
+        tiempo: new Date,
+        hora:0,
+        minuto:0,
+        segundo:0,
+        llegada: false
+      }
+      console.log(competidor);
+      
+      this.serviceData.createCompetidor(competidor)
+      this.registroForm.reset()
+  
+
+    }else{
+
+      let toast = await this.toastCtrl.create({
+        message: 'Complete todo los campos requeridos',
+        duration: 2000,
+        position: 'top'
+      });
+
+      return await toast.present()
+
+
     }
-    console.log(competidor);
-    
-    this.serviceData.createCompetidor(competidor)
+
+
+
 
   }
+
 
   async onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
@@ -137,9 +179,6 @@ export class RegistroPage implements OnInit {
     }
   }
 
-  actualizarCompetidor() {
-
-  }
 
   eliminarCompetidor() {
 
@@ -171,6 +210,30 @@ export class RegistroPage implements OnInit {
     this.serviceData.logout()
 
   }
+
+
+
+  cancelUpdate(){
+    
+  }
+
+  confirmUpdate(){
+
+  }
+
+  async actualizarCompetidor(competidor) {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        competidor: competidor,
+      }
+    });
+  
+    return await modal.present();
+
+  }
+
+
 
 
 }

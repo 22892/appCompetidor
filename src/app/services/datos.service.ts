@@ -95,6 +95,50 @@ export class DatosService {
   }
 
 
+  setIdPersona(id: any){
+
+
+    if(id == 0){
+      localStorage.setItem('idPerson', '1');
+      
+    }else{
+
+      console.log('noooo');
+      var idPerson = localStorage.getItem('idPerson')
+      if(idPerson == null){
+
+      }else{
+
+        console.log('aumenta');
+        var aux = parseInt(idPerson) + 1
+        localStorage.setItem('idPerson', aux.toString());
+      }
+    }
+
+   
+  }
+
+
+  getIdPerson(){
+
+    var resulatdo: any
+    var idPerson = localStorage.getItem('idPerson')
+
+    console.log('getttttttttttttt');
+    console.log(idPerson);
+    console.log(parseInt(idPerson));
+
+    if(idPerson == null){
+      localStorage.setItem('idPerson', '1');
+      resulatdo = 1
+    }else{
+      resulatdo = parseInt(idPerson)
+    }
+    return resulatdo
+  }
+
+
+
 
 
 }

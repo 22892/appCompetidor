@@ -10,4 +10,5 @@ export interface Competidor {
     hora:number;
     minuto:number;
     segundo:number;
+    llegada: Boolean;
   }
