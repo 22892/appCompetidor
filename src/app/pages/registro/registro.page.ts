@@ -100,6 +100,7 @@ export class RegistroPage implements OnInit {
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
+    this.registroForm.reset()
   }
 
 
