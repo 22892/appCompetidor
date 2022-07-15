@@ -47,8 +47,8 @@ export class DatosService {
     this.competidorDoc.update(competidor)
   }
 
-  deleteCompetidor(competidor: Competidor) {
-    this.fireStore.doc<any>('competidores/' + competidor.id).delete();
+  deleteCompetidor(id: number) {
+    this.fireStore.doc<any>('competidores/' + id).delete();
   }
 
   getCompetidoresAsistio(): Observable<any> {

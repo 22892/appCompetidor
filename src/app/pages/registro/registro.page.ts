@@ -145,7 +145,7 @@ export class RegistroPage implements OnInit {
 
   }
 
-  async verificaEliminar() {
+  async verificaEliminar(id:number) {
     const alert = await this.alertController.create({
       header: 'Desea Eliminar',
       cssClass: 'custom-alert',
@@ -158,7 +158,7 @@ export class RegistroPage implements OnInit {
           text: 'Yes',
           cssClass: 'alert-button-confirm',
           handler: () => {
-            console.log('ok clicked');
+            this.serviceData.deleteCompetidor(id);
           }
         }
       ]
